@@ -8,6 +8,7 @@ export default class CustomPalette {
   getPaletteEntries(element) {
     const { create, elementFactory } = this;
     function createServiceTask(event) {
+      console.log("dalla palette", elementFactory)
       const shape = elementFactory.createShape({ type: "bpmn:ServiceTask" });
       create.start(event, shape);
     }

@@ -6,22 +6,27 @@ export default class CustomContextPad {
     if (config.autoPlace !== false) {
       this.autoPlace = injector.get("autoPlace", false);
     }
-
     contextPad.registerProvider(this);
   }
 
   getContextPadEntries(element) {
     const { autoPlace, create, elementFactory } = this;
 
-    function appendServiceTask(event, element) {
-      appendServiceTaskStart(event, element);
-      if (autoPlace) {
-        const shape = elementFactory.createShape({ type: "bpmn:ServiceTask" });
+    
 
-        autoPlace.append(element, shape);
-      } else {
-        appendServiceTaskStart(event, element);
+    function appendServiceTask(event, element) {
+    
+      console.log(element)
+      if(element && element.type === "bpmn:Task" && element.businessObject && element.businessObject.outgoing && element.businessObject.outgoing.length > 0) {
+
+        console.log("da bloccare")
+        return
       }
+     
+      autoPlace
+        ? autoPlace.append(element, elementFactory.createShape({ type: "bpmn:ServiceTask" }))
+        : appendServiceTaskStart(event, element)
+
     }
 
     function appendServiceTaskStart(event) {

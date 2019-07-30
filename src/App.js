@@ -8,7 +8,7 @@ import ZoomScrollModule from "diagram-js/lib/navigation/zoomscroll";
 import "bpmn-js/dist/assets/diagram-js.css";
 import "bpmn-js/dist/assets/bpmn-font/css/bpmn-embedded.css";
 import "diagram-js-minimap/assets/diagram-js-minimap.css";
-import customControlsModule from "./customControlsModule";
+import customSingleLine from "./customSingleLine";
 
 
 
@@ -20,9 +20,6 @@ function download(content, fileName, mimeType) {
     mimeType
   );
 }
-
-
-
 
 function App() {
   const [modelerIstance, setModelerIstance] = useState(null);
@@ -50,15 +47,15 @@ function App() {
     const modeler = new BpmnModeler({
       container: myBpmn.current,
       additionalModules: [
-        customControlsModule,
+        customSingleLine,
         minimapModule,
         ZoomScrollModule
       ],
 
-      // bpmnRenderer: {
-      //    defaultFillColor: "#333",
-      //     defaultStrokeColor: "#fff"
-      //    },
+      bpmnRenderer: {
+         defaultFillColor: "#f9f9f9",
+          defaultStrokeColor: "black"
+         },
       propertiesPanel: {
         parent: myPalette.current
       }
