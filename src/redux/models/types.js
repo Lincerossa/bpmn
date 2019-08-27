@@ -1,0 +1,4 @@
+
+export const MODELS_CREATE = 'MODELS_CREATE'
+export const MODELS_EDIT = 'MODELS_EDIT'
+export const MODELS_DELETE = 'MODELS_DELETE'
