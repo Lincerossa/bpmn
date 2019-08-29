@@ -1,8 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
 import BpmnModeler from "bpmn-js/lib/Modeler";
-import minimapModule from "diagram-js-minimap";
-import * as Yup from 'yup'
-import uuidv4 from 'uuid/v4'
 
 import "bpmn-js/dist/assets/diagram-js.css";
 import "bpmn-js/dist/assets/bpmn-font/css/bpmn-embedded.css";
@@ -17,8 +14,9 @@ import customEvents from "./additionalModules/customEvents";
 import customRules from "./additionalModules/customRules"
 import { getListOfElements } from './utility'
 import Button from '../Button'
-import Form from '../Form'
+import Draggable from '../Draggable'
 import download from '../../utility/download'
+import FormFieldsGenerator from "../FormFieldsGenerator"
 
 
 const defaultBpmn = `<?xml version="1.0" encoding="UTF-8"?>
@@ -35,19 +33,11 @@ const defaultBpmn = `<?xml version="1.0" encoding="UTF-8"?>
 `
 
 
-const getRandomInputItems = (length, label) =>
-  Array.from({ length }, (e, i) => ({
-    label: `${label}${i + 1}`,
-    value: uuidv4(),
-  }))
-
-
-
-
 export default ({ data, createModel, editModel }) => {
   const [modelerIstance, setModelerIstance] = useState();
   const [ additionalInfo, setSetAdditionalInfo ] = useState(data && data.additionalInfo)
   const [ activeElementID, setActiveElementID ] = useState(null)
+  const [ isSidebarOpen, openSidebar ] = useState(null)
 
   const myBpmn = useRef();
   const myPalette = useRef();
@@ -75,7 +65,7 @@ export default ({ data, createModel, editModel }) => {
       container: myBpmn.current,
       additionalModules: [
         serviceTask,
-        minimapModule,
+        //minimapModule,
         customRender,
         customEvents,
         customRules,
@@ -105,21 +95,12 @@ export default ({ data, createModel, editModel }) => {
     var eventBus = modeler.get('eventBus');
 
     eventBus.on('element.click', () => {
+
       const activeElements = modeler.get('selection').get()
       const newActiveElementID = activeElements[0] && activeElements[0].id
-
-
       if(activeElementID !== newActiveElementID){
-        setActiveElementID(null)
-
-        setTimeout(() => {
-          setActiveElementID(newActiveElementID)
-        }, 0);
-       
-        return
-        
+        openSidebar(false)
       }
-
       setActiveElementID(newActiveElementID)
     })
   
@@ -158,13 +139,14 @@ export default ({ data, createModel, editModel }) => {
   }
 
 
-  function handleSubmit(values, { setSubmitting }) {
-    const newAdditionalInfo ={
+  function handleSubmit(inputs) {
+
+    const newAdditionalInfo = {
       ...additionalInfo,
-      [activeElementID]: values
+      [activeElementID]: inputs
     }
     setSetAdditionalInfo(newAdditionalInfo)
-    setSubmitting(false)
+    openSidebar(false)
   }
 
   return (
@@ -180,79 +162,24 @@ export default ({ data, createModel, editModel }) => {
         <Button full icon="MdArchive" onClick={handleDownload}>Download Bmpn</Button>
       </S.CtaWrapper>
       <S.CtaWrapperBottom>
-      <Button  icon="MdClear" onClick={handleResetData}>Reset</Button>
+        <Button  icon="MdClear" onClick={handleResetData}>Reset</Button>
         {createModel && <Button full icon="MdAdd" onClick={handleCreateModel}>Create Model</Button>}
         {editModel && <Button full icon="MdEdit"  onClick={handleEditModel}>Edit Model</Button>}
-        
       </S.CtaWrapperBottom>
-      {activeElementID && (
-        
-        <S.Sidebar>
-   
-            <S.SidebarTitle>{activeElementID}</S.SidebarTitle>
-            <Form
-              activeElementID={activeElementID}
-              onSubmit={handleSubmit}
-              validationSchema={Yup.object().shape({
-                name: Yup.string()
-                  .required('The email is required'),
-                
-              })}
-              initialValues={(additionalInfo && additionalInfo[activeElementID])}
-              inputs={[
-                {
-                  label: 'first name',
-                  name: 'name',
-                  type: 'text',
-                  placeholder: 'team eglobe',
-                },
-                {
-                  label: 'checkbox example',
-                  name: 'multipleOptions3',
-                  type: 'checkbox',
-                  items: [
-                    {
-                      label: 'checkbox 1',
-                      value: 'asasdas'
-                    },
-                    {
-                      label: 'checkbox 2',
-                      value: 'asasdas2'
-                    },
-                    {
-                      label: 'checkbox 3',
-                      value: 'asasdas3'
-                    },
-                  ],
-                },
-                {
-                  label: 'select with group of options',
-                  name: 'select3',
-                  type: 'select',
-                  isMulti: true,
-                  items: [
-                    {
-                      label: 'sublabel 1',
-                      options:  [
-                        {
-                          label: 'multi 1',
-                          value: 'asasdas123'
-                        },
-                        {
-                          label: 'multi 2',
-                          value: 'asasdas123123'
-                        }
-                    
-                    ]
-                    },
-                  ]
-                }
-              ]}
-            />
-
-
-          </S.Sidebar>
-        )}
+      {activeElementID && <S.CtaWrapperTop>
+        <Button full icon="MdBlurOn" onClick={() => openSidebar(true)}>{activeElementID}</Button>
+      </S.CtaWrapperTop>}
+    
+      <Draggable mask footer={[]} onCancel={() => openSidebar(false)} visible={isSidebarOpen} title={activeElementID} onClose={() => openSidebar(false)}>
+          <S.SidebarContent>
+          
+          <FormFieldsGenerator
+            onSubmit={handleSubmit}
+            initialInputs={(additionalInfo && additionalInfo[activeElementID]) || []}
+          />
+          </S.SidebarContent>
+        </Draggable>
+      )}
 
     </React.Fragment>
   );

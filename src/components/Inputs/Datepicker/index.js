@@ -1,7 +1,7 @@
 import React from 'react'
 import DatePicker from 'react-datepicker'
 
-import 'react-datepicker/dist/react-datepicker.css'
+
 import Input from '../Input'
 
 export default ({ name, value, placeholder, setFieldValue, onBlur, success, error, ...props }) => {

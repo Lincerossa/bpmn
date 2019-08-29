@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 export const SidebarTitle = styled.div`
   color: #6200ee;
-  margin-bottom: .5rem;
+  margin-bottom: 1rem;
   border-bottom: 1px solid;
   padding-bottom: .5rem;
   font-size: 1.5rem;
@@ -69,6 +69,13 @@ export const CtaWrapperBottom = styled.div`
   display: grid;
   grid-gap: .5rem;
   grid-template-columns: 1fr 1fr;
+`
+export const CtaWrapperTop = styled.div`
+  position: absolute;
+  top: 5rem;
+  right: 1.25rem;
+`
+export const SidebarContent = styled.div`
 `
 
 

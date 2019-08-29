@@ -1,0 +1,896 @@
+.ant-design-draggable-modal {
+  pointer-events: none;
+  overflow: hidden !important;
+}
+
+.ant-design-draggable-modal-is-dragging {
+  opacity: 0.5;
+}
+
+.ant-design-draggable-modal .ant-modal {
+    display: flex;
+    max-width: none;
+    transform-origin: 50% 50% !important;
+}
+
+.ant-design-draggable-modal .ant-modal-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.ant-design-draggable-modal .ant-modal-header {
+    flex: 0;
+    padding: 0;
+}
+
+.ant-design-draggable-modal .ant-modal-footer {
+    flex: 0;
+    padding: 16px;
+}
+
+.ant-design-draggable-modal .ant-design-draggable-modal-title {
+    cursor: move;
+    padding: 16px;
+}
+
+.ant-design-draggable-modal .ant-modal-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+}
+
+/*Antd Modal customisation*/
+.ant-modal {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: rgba(0, 0, 0, 0.65);
+    font-size: 14px;
+    font-variant: tabular-nums;
+    line-height: 1.5;
+    list-style: none;
+    -webkit-font-feature-settings: 'tnum';
+            font-feature-settings: 'tnum';
+    position: relative;
+    top: 100px;
+    width: auto;
+    margin: 0 auto;
+    padding-bottom: 24px;
+    pointer-events: none;
+  }
+  .ant-modal-wrap {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    overflow: auto;
+    outline: 0;
+    -webkit-overflow-scrolling: touch;
+  }
+  .ant-modal-title {
+    margin: 0;
+    color: rgba(0, 0, 0, 0.85);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 22px;
+    word-wrap: break-word;
+  }
+  .ant-modal-content {
+    position: relative;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 0;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    pointer-events: auto;
+  }
+  .ant-modal-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    padding: 0;
+    color: rgba(0, 0, 0, 0.45);
+    font-weight: 700;
+    line-height: 1;
+    text-decoration: none;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    -webkit-transition: color 0.3s;
+    transition: color 0.3s;
+  }
+  .ant-modal-close-x {
+    display: block;
+    width: 56px;
+    height: 56px;
+    font-size: 16px;
+    font-style: normal;
+    line-height: 56px;
+    text-align: center;
+    text-transform: none;
+    text-rendering: auto;
+  }
+  .ant-modal-close:focus,
+  .ant-modal-close:hover {
+    color: rgba(0, 0, 0, 0.75);
+    text-decoration: none;
+  }
+  .ant-modal-header {
+    padding: 16px 24px;
+    color: rgba(0, 0, 0, 0.65);
+    background: #fff;
+    border-bottom: 1px solid #e8e8e8;
+    border-radius: 4px 4px 0 0;
+  }
+  .ant-modal-body {
+    padding: 24px;
+    font-size: 14px;
+    line-height: 1.5;
+    word-wrap: break-word;
+  }
+  .ant-modal-footer {
+    padding: 10px 16px;
+    text-align: right;
+    background: transparent;
+    border-top: 1px solid #e8e8e8;
+    border-radius: 0 0 4px 4px;
+  }
+  .ant-modal-footer button + button {
+    margin-bottom: 0;
+    margin-left: 8px;
+  }
+  .ant-modal.zoom-enter,
+  .ant-modal.zoom-appear {
+    -webkit-transform: none;
+        -ms-transform: none;
+            transform: none;
+    opacity: 0;
+    -webkit-animation-duration: 0.3s;
+            animation-duration: 0.3s;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+  }
+  .ant-modal-mask {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.65);
+    filter: alpha(opacity=50);
+  }
+  .ant-modal-mask-hidden {
+    display: none;
+  }
+  .ant-modal-open {
+    overflow: hidden;
+  }
+  .ant-modal-centered {
+    text-align: center;
+  }
+  .ant-modal-centered::before {
+    display: inline-block;
+    width: 0;
+    height: 100%;
+    vertical-align: middle;
+    content: '';
+  }
+  .ant-modal-centered .ant-modal {
+    top: 0;
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+  }
+  @media (max-width: 767px) {
+    .ant-modal {
+      max-width: calc(100vw - 16px);
+      margin: 8px auto;
+    }
+    .ant-modal-centered .ant-modal {
+      -webkit-box-flex: 1;
+          -ms-flex: 1;
+              flex: 1;
+    }
+  }
+  .ant-modal-confirm .ant-modal-header {
+    display: none;
+  }
+  .ant-modal-confirm .ant-modal-close {
+    display: none;
+  }
+  .ant-modal-confirm .ant-modal-body {
+    padding: 32px 32px 24px;
+  }
+  .ant-modal-confirm-body-wrapper {
+    zoom: 1;
+  }
+  .ant-modal-confirm-body-wrapper::before,
+  .ant-modal-confirm-body-wrapper::after {
+    display: table;
+    content: '';
+  }
+  .ant-modal-confirm-body-wrapper::after {
+    clear: both;
+  }
+  .ant-modal-confirm-body .ant-modal-confirm-title {
+    display: block;
+    overflow: hidden;
+    color: rgba(0, 0, 0, 0.85);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.4;
+  }
+  .ant-modal-confirm-body .ant-modal-confirm-content {
+    margin-top: 8px;
+    color: rgba(0, 0, 0, 0.65);
+    font-size: 14px;
+  }
+  .ant-modal-confirm-body > .anticon {
+    float: left;
+    margin-right: 16px;
+    font-size: 22px;
+  }
+  .ant-modal-confirm-body > .anticon + .ant-modal-confirm-title + .ant-modal-confirm-content {
+    margin-left: 38px;
+  }
+  .ant-modal-confirm .ant-modal-confirm-btns {
+    float: right;
+    margin-top: 24px;
+  }
+  .ant-modal-confirm .ant-modal-confirm-btns button + button {
+    margin-bottom: 0;
+    margin-left: 8px;
+  }
+  .ant-modal-confirm-error .ant-modal-confirm-body > .anticon {
+    color: #f5222d;
+  }
+  .ant-modal-confirm-warning .ant-modal-confirm-body > .anticon,
+  .ant-modal-confirm-confirm .ant-modal-confirm-body > .anticon {
+    color: #faad14;
+  }
+  .ant-modal-confirm-info .ant-modal-confirm-body > .anticon {
+    color: #1890ff;
+  }
+  .ant-modal-confirm-success .ant-modal-confirm-body > .anticon {
+    color: #52c41a;
+  }
+  
+  .ant-btn-primary {
+    color: #fff;
+    background-color: #1890ff;
+    border-color: #1890ff;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
+    -webkit-box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
+            box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
+  }
+  .ant-btn-primary > a:only-child {
+    color: currentColor;
+  }
+  .ant-btn-primary > a:only-child::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: transparent;
+    content: '';
+  }
+  .ant-btn-primary:hover,
+  .ant-btn-primary:focus {
+    color: #fff;
+    background-color: #40a9ff;
+    border-color: #40a9ff;
+  }
+  .ant-btn-primary:hover > a:only-child,
+  .ant-btn-primary:focus > a:only-child {
+    color: currentColor;
+  }
+  .ant-btn-primary:hover > a:only-child::after,
+  .ant-btn-primary:focus > a:only-child::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: transparent;
+    content: '';
+  }
+  .ant-btn-primary:active,
+  .ant-btn-primary.active {
+    color: #fff;
+    background-color: #096dd9;
+    border-color: #096dd9;
+  }
+  .ant-btn-primary:active > a:only-child,
+  .ant-btn-primary.active > a:only-child {
+    color: currentColor;
+  }
+  .ant-btn-primary:active > a:only-child::after,
+  .ant-btn-primary.active > a:only-child::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: transparent;
+    content: '';
+  }
+  .ant-btn-primary-disabled,
+  .ant-btn-primary.disabled,
+  .ant-btn-primary[disabled],
+  .ant-btn-primary-disabled:hover,
+  .ant-btn-primary.disabled:hover,
+  .ant-btn-primary[disabled]:hover,
+  .ant-btn-primary-disabled:focus,
+  .ant-btn-primary.disabled:focus,
+  .ant-btn-primary[disabled]:focus,
+  .ant-btn-primary-disabled:active,
+  .ant-btn-primary.disabled:active,
+  .ant-btn-primary[disabled]:active,
+  .ant-btn-primary-disabled.active,
+  .ant-btn-primary.disabled.active,
+  .ant-btn-primary[disabled].active {
+    color: rgba(0, 0, 0, 0.25);
+    background-color: #f5f5f5;
+    border-color: #d9d9d9;
+    text-shadow: none;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+  .ant-btn-primary-disabled > a:only-child,
+  .ant-btn-primary.disabled > a:only-child,
+  .ant-btn-primary[disabled] > a:only-child,
+  .ant-btn-primary-disabled:hover > a:only-child,
+  .ant-btn-primary.disabled:hover > a:only-child,
+  .ant-btn-primary[disabled]:hover > a:only-child,
+  .ant-btn-primary-disabled:focus > a:only-child,
+  .ant-btn-primary.disabled:focus > a:only-child,
+  .ant-btn-primary[disabled]:focus > a:only-child,
+  .ant-btn-primary-disabled:active > a:only-child,
+  .ant-btn-primary.disabled:active > a:only-child,
+  .ant-btn-primary[disabled]:active > a:only-child,
+  .ant-btn-primary-disabled.active > a:only-child,
+  .ant-btn-primary.disabled.active > a:only-child,
+  .ant-btn-primary[disabled].active > a:only-child {
+    color: currentColor;
+  }
+  .ant-btn-primary-disabled > a:only-child::after,
+  .ant-btn-primary.disabled > a:only-child::after,
+  .ant-btn-primary[disabled] > a:only-child::after,
+  .ant-btn-primary-disabled:hover > a:only-child::after,
+  .ant-btn-primary.disabled:hover > a:only-child::after,
+  .ant-btn-primary[disabled]:hover > a:only-child::after,
+  .ant-btn-primary-disabled:focus > a:only-child::after,
+  .ant-btn-primary.disabled:focus > a:only-child::after,
+  .ant-btn-primary[disabled]:focus > a:only-child::after,
+  .ant-btn-primary-disabled:active > a:only-child::after,
+  .ant-btn-primary.disabled:active > a:only-child::after,
+  .ant-btn-primary[disabled]:active > a:only-child::after,
+  .ant-btn-primary-disabled.active > a:only-child::after,
+  .ant-btn-primary.disabled.active > a:only-child::after,
+  .ant-btn-primary[disabled].active > a:only-child::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: transparent;
+    content: '';
+  }
+  .ant-btn-group .ant-btn-primary:not(:first-child):not(:last-child) {
+    border-right-color: #40a9ff;
+    border-left-color: #40a9ff;
+  }
+  .ant-btn-group .ant-btn-primary:not(:first-child):not(:last-child):disabled {
+    border-color: #d9d9d9;
+  }
+  .ant-btn-group .ant-btn-primary:first-child:not(:last-child) {
+    border-right-color: #40a9ff;
+  }
+  .ant-btn-group .ant-btn-primary:first-child:not(:last-child)[disabled] {
+    border-right-color: #d9d9d9;
+  }
+  .ant-btn-group .ant-btn-primary:last-child:not(:first-child),
+  .ant-btn-group .ant-btn-primary + .ant-btn-primary {
+    border-left-color: #40a9ff;
+  }
+  .ant-btn-group .ant-btn-primary:last-child:not(:first-child)[disabled],
+  .ant-btn-group .ant-btn-primary + .ant-btn-primary[disabled] {
+    border-left-color: #d9d9d9;
+  }
+  
+  .ant-btn-group .ant-btn-primary + .ant-btn:not(.ant-btn-primary):not([disabled]) {
+    border-left-color: transparent;
+  }
+  
+  .ant-btn-background-ghost.ant-btn-primary {
+    color: #1890ff;
+    background-color: transparent;
+    border-color: #1890ff;
+    text-shadow: none;
+  }
+  .ant-btn-background-ghost.ant-btn-primary > a:only-child {
+    color: currentColor;
+  }
+  .ant-btn-background-ghost.ant-btn-primary > a:only-child::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: transparent;
+    content: '';
+  }
+  .ant-btn-background-ghost.ant-btn-primary:hover,
+  .ant-btn-background-ghost.ant-btn-primary:focus {
+    color: #40a9ff;
+    background-color: transparent;
+    border-color: #40a9ff;
+  }
+  .ant-btn-background-ghost.ant-btn-primary:hover > a:only-child,
+  .ant-btn-background-ghost.ant-btn-primary:focus > a:only-child {
+    color: currentColor;
+  }
+  .ant-btn-background-ghost.ant-btn-primary:hover > a:only-child::after,
+  .ant-btn-background-ghost.ant-btn-primary:focus > a:only-child::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: transparent;
+    content: '';
+  }
+  .ant-btn-background-ghost.ant-btn-primary:active,
+  .ant-btn-background-ghost.ant-btn-primary.active {
+    color: #096dd9;
+    background-color: transparent;
+    border-color: #096dd9;
+  }
+  .ant-btn-background-ghost.ant-btn-primary:active > a:only-child,
+  .ant-btn-background-ghost.ant-btn-primary.active > a:only-child {
+    color: currentColor;
+  }
+  .ant-btn-background-ghost.ant-btn-primary:active > a:only-child::after,
+  .ant-btn-background-ghost.ant-btn-primary.active > a:only-child::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: transparent;
+    content: '';
+  }
+  .ant-btn-background-ghost.ant-btn-primary-disabled,
+  .ant-btn-background-ghost.ant-btn-primary.disabled,
+  .ant-btn-background-ghost.ant-btn-primary[disabled],
+  .ant-btn-background-ghost.ant-btn-primary-disabled:hover,
+  .ant-btn-background-ghost.ant-btn-primary.disabled:hover,
+  .ant-btn-background-ghost.ant-btn-primary[disabled]:hover,
+  .ant-btn-background-ghost.ant-btn-primary-disabled:focus,
+  .ant-btn-background-ghost.ant-btn-primary.disabled:focus,
+  .ant-btn-background-ghost.ant-btn-primary[disabled]:focus,
+  .ant-btn-background-ghost.ant-btn-primary-disabled:active,
+  .ant-btn-background-ghost.ant-btn-primary.disabled:active,
+  .ant-btn-background-ghost.ant-btn-primary[disabled]:active,
+  .ant-btn-background-ghost.ant-btn-primary-disabled.active,
+  .ant-btn-background-ghost.ant-btn-primary.disabled.active,
+  .ant-btn-background-ghost.ant-btn-primary[disabled].active {
+    color: rgba(0, 0, 0, 0.25);
+    background-color: #f5f5f5;
+    border-color: #d9d9d9;
+    text-shadow: none;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+  .ant-btn-background-ghost.ant-btn-primary-disabled > a:only-child,
+  .ant-btn-background-ghost.ant-btn-primary.disabled > a:only-child,
+  .ant-btn-background-ghost.ant-btn-primary[disabled] > a:only-child,
+  .ant-btn-background-ghost.ant-btn-primary-disabled:hover > a:only-child,
+  .ant-btn-background-ghost.ant-btn-primary.disabled:hover > a:only-child,
+  .ant-btn-background-ghost.ant-btn-primary[disabled]:hover > a:only-child,
+  .ant-btn-background-ghost.ant-btn-primary-disabled:focus > a:only-child,
+  .ant-btn-background-ghost.ant-btn-primary.disabled:focus > a:only-child,
+  .ant-btn-background-ghost.ant-btn-primary[disabled]:focus > a:only-child,
+  .ant-btn-background-ghost.ant-btn-primary-disabled:active > a:only-child,
+  .ant-btn-background-ghost.ant-btn-primary.disabled:active > a:only-child,
+  .ant-btn-background-ghost.ant-btn-primary[disabled]:active > a:only-child,
+  .ant-btn-background-ghost.ant-btn-primary-disabled.active > a:only-child,
+  .ant-btn-background-ghost.ant-btn-primary.disabled.active > a:only-child,
+  .ant-btn-background-ghost.ant-btn-primary[disabled].active > a:only-child {
+    color: currentColor;
+  }
+  .ant-btn-background-ghost.ant-btn-primary-disabled > a:only-child::after,
+  .ant-btn-background-ghost.ant-btn-primary.disabled > a:only-child::after,
+  .ant-btn-background-ghost.ant-btn-primary[disabled] > a:only-child::after,
+  .ant-btn-background-ghost.ant-btn-primary-disabled:hover > a:only-child::after,
+  .ant-btn-background-ghost.ant-btn-primary.disabled:hover > a:only-child::after,
+  .ant-btn-background-ghost.ant-btn-primary[disabled]:hover > a:only-child::after,
+  .ant-btn-background-ghost.ant-btn-primary-disabled:focus > a:only-child::after,
+  .ant-btn-background-ghost.ant-btn-primary.disabled:focus > a:only-child::after,
+  .ant-btn-background-ghost.ant-btn-primary[disabled]:focus > a:only-child::after,
+  .ant-btn-background-ghost.ant-btn-primary-disabled:active > a:only-child::after,
+  .ant-btn-background-ghost.ant-btn-primary.disabled:active > a:only-child::after,
+  .ant-btn-background-ghost.ant-btn-primary[disabled]:active > a:only-child::after,
+  .ant-btn-background-ghost.ant-btn-primary-disabled.active > a:only-child::after,
+  .ant-btn-background-ghost.ant-btn-primary.disabled.active > a:only-child::after,
+  .ant-btn-background-ghost.ant-btn-primary[disabled].active > a:only-child::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: transparent;
+    content: '';
+  }
+
+
+
+/* Questo mi regola lo zoom*/
+.zoom-enter,
+.zoom-appear {
+  -webkit-animation-duration: 0.2s;
+          animation-duration: 0.2s;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+  -webkit-animation-play-state: paused;
+          animation-play-state: paused;
+}
+.zoom-leave {
+  -webkit-animation-duration: 0.2s;
+          animation-duration: 0.2s;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+  -webkit-animation-play-state: paused;
+          animation-play-state: paused;
+}
+.zoom-enter.zoom-enter-active,
+.zoom-appear.zoom-appear-active {
+  -webkit-animation-name: antZoomIn;
+          animation-name: antZoomIn;
+  -webkit-animation-play-state: running;
+          animation-play-state: running;
+}
+.zoom-leave.zoom-leave-active {
+  -webkit-animation-name: antZoomOut;
+          animation-name: antZoomOut;
+  -webkit-animation-play-state: running;
+          animation-play-state: running;
+  pointer-events: none;
+}
+.zoom-enter,
+.zoom-appear {
+  -webkit-transform: scale(0);
+      -ms-transform: scale(0);
+          transform: scale(0);
+  opacity: 0;
+  -webkit-animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
+          animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
+}
+.zoom-leave {
+  -webkit-animation-timing-function: cubic-bezier(0.78, 0.14, 0.15, 0.86);
+          animation-timing-function: cubic-bezier(0.78, 0.14, 0.15, 0.86);
+}
+.zoom-big-enter,
+.zoom-big-appear {
+  -webkit-animation-duration: 0.2s;
+          animation-duration: 0.2s;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+  -webkit-animation-play-state: paused;
+          animation-play-state: paused;
+}
+.zoom-big-leave {
+  -webkit-animation-duration: 0.2s;
+          animation-duration: 0.2s;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+  -webkit-animation-play-state: paused;
+          animation-play-state: paused;
+}
+.zoom-big-enter.zoom-big-enter-active,
+.zoom-big-appear.zoom-big-appear-active {
+  -webkit-animation-name: antZoomBigIn;
+          animation-name: antZoomBigIn;
+  -webkit-animation-play-state: running;
+          animation-play-state: running;
+}
+.zoom-big-leave.zoom-big-leave-active {
+  -webkit-animation-name: antZoomBigOut;
+          animation-name: antZoomBigOut;
+  -webkit-animation-play-state: running;
+          animation-play-state: running;
+  pointer-events: none;
+}
+.zoom-big-enter,
+.zoom-big-appear {
+  -webkit-transform: scale(0);
+      -ms-transform: scale(0);
+          transform: scale(0);
+  opacity: 0;
+  -webkit-animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
+          animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
+}
+.zoom-big-leave {
+  -webkit-animation-timing-function: cubic-bezier(0.78, 0.14, 0.15, 0.86);
+          animation-timing-function: cubic-bezier(0.78, 0.14, 0.15, 0.86);
+}
+.zoom-big-fast-enter,
+.zoom-big-fast-appear {
+  -webkit-animation-duration: 0.1s;
+          animation-duration: 0.1s;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+  -webkit-animation-play-state: paused;
+          animation-play-state: paused;
+}
+.zoom-big-fast-leave {
+  -webkit-animation-duration: 0.1s;
+          animation-duration: 0.1s;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+  -webkit-animation-play-state: paused;
+          animation-play-state: paused;
+}
+.zoom-big-fast-enter.zoom-big-fast-enter-active,
+.zoom-big-fast-appear.zoom-big-fast-appear-active {
+  -webkit-animation-name: antZoomBigIn;
+          animation-name: antZoomBigIn;
+  -webkit-animation-play-state: running;
+          animation-play-state: running;
+}
+.zoom-big-fast-leave.zoom-big-fast-leave-active {
+  -webkit-animation-name: antZoomBigOut;
+          animation-name: antZoomBigOut;
+  -webkit-animation-play-state: running;
+          animation-play-state: running;
+  pointer-events: none;
+}
+.zoom-big-fast-enter,
+.zoom-big-fast-appear {
+  -webkit-transform: scale(0);
+      -ms-transform: scale(0);
+          transform: scale(0);
+  opacity: 0;
+  -webkit-animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
+          animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
+}
+.zoom-big-fast-leave {
+  -webkit-animation-timing-function: cubic-bezier(0.78, 0.14, 0.15, 0.86);
+          animation-timing-function: cubic-bezier(0.78, 0.14, 0.15, 0.86);
+}
+.zoom-up-enter,
+.zoom-up-appear {
+  -webkit-animation-duration: 0.2s;
+          animation-duration: 0.2s;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+  -webkit-animation-play-state: paused;
+          animation-play-state: paused;
+}
+.zoom-up-leave {
+  -webkit-animation-duration: 0.2s;
+          animation-duration: 0.2s;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+  -webkit-animation-play-state: paused;
+          animation-play-state: paused;
+}
+.zoom-up-enter.zoom-up-enter-active,
+.zoom-up-appear.zoom-up-appear-active {
+  -webkit-animation-name: antZoomUpIn;
+          animation-name: antZoomUpIn;
+  -webkit-animation-play-state: running;
+          animation-play-state: running;
+}
+.zoom-up-leave.zoom-up-leave-active {
+  -webkit-animation-name: antZoomUpOut;
+          animation-name: antZoomUpOut;
+  -webkit-animation-play-state: running;
+          animation-play-state: running;
+  pointer-events: none;
+}
+.zoom-up-enter,
+.zoom-up-appear {
+  -webkit-transform: scale(0);
+      -ms-transform: scale(0);
+          transform: scale(0);
+  opacity: 0;
+  -webkit-animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
+          animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
+}
+.zoom-up-leave {
+  -webkit-animation-timing-function: cubic-bezier(0.78, 0.14, 0.15, 0.86);
+          animation-timing-function: cubic-bezier(0.78, 0.14, 0.15, 0.86);
+}
+.zoom-down-enter,
+.zoom-down-appear {
+  -webkit-animation-duration: 0.2s;
+          animation-duration: 0.2s;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+  -webkit-animation-play-state: paused;
+          animation-play-state: paused;
+}
+.zoom-down-leave {
+  -webkit-animation-duration: 0.2s;
+          animation-duration: 0.2s;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+  -webkit-animation-play-state: paused;
+          animation-play-state: paused;
+}
+.zoom-down-enter.zoom-down-enter-active,
+.zoom-down-appear.zoom-down-appear-active {
+  -webkit-animation-name: antZoomDownIn;
+          animation-name: antZoomDownIn;
+  -webkit-animation-play-state: running;
+          animation-play-state: running;
+}
+.zoom-down-leave.zoom-down-leave-active {
+  -webkit-animation-name: antZoomDownOut;
+          animation-name: antZoomDownOut;
+  -webkit-animation-play-state: running;
+          animation-play-state: running;
+  pointer-events: none;
+}
+.zoom-down-enter,
+.zoom-down-appear {
+  -webkit-transform: scale(0);
+      -ms-transform: scale(0);
+          transform: scale(0);
+  opacity: 0;
+  -webkit-animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
+          animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
+}
+.zoom-down-leave {
+  -webkit-animation-timing-function: cubic-bezier(0.78, 0.14, 0.15, 0.86);
+          animation-timing-function: cubic-bezier(0.78, 0.14, 0.15, 0.86);
+}
+.zoom-left-enter,
+.zoom-left-appear {
+  -webkit-animation-duration: 0.2s;
+          animation-duration: 0.2s;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+  -webkit-animation-play-state: paused;
+          animation-play-state: paused;
+}
+.zoom-left-leave {
+  -webkit-animation-duration: 0.2s;
+          animation-duration: 0.2s;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+  -webkit-animation-play-state: paused;
+          animation-play-state: paused;
+}
+.zoom-left-enter.zoom-left-enter-active,
+.zoom-left-appear.zoom-left-appear-active {
+  -webkit-animation-name: antZoomLeftIn;
+          animation-name: antZoomLeftIn;
+  -webkit-animation-play-state: running;
+          animation-play-state: running;
+}
+.zoom-left-leave.zoom-left-leave-active {
+  -webkit-animation-name: antZoomLeftOut;
+          animation-name: antZoomLeftOut;
+  -webkit-animation-play-state: running;
+          animation-play-state: running;
+  pointer-events: none;
+}
+.zoom-left-enter,
+.zoom-left-appear {
+  -webkit-transform: scale(0);
+      -ms-transform: scale(0);
+          transform: scale(0);
+  opacity: 0;
+  -webkit-animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
+          animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
+}
+.zoom-left-leave {
+  -webkit-animation-timing-function: cubic-bezier(0.78, 0.14, 0.15, 0.86);
+          animation-timing-function: cubic-bezier(0.78, 0.14, 0.15, 0.86);
+}
+.zoom-right-enter,
+.zoom-right-appear {
+  -webkit-animation-duration: 0.2s;
+          animation-duration: 0.2s;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+  -webkit-animation-play-state: paused;
+          animation-play-state: paused;
+}
+.zoom-right-leave {
+  -webkit-animation-duration: 0.2s;
+          animation-duration: 0.2s;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+  -webkit-animation-play-state: paused;
+          animation-play-state: paused;
+}
+.zoom-right-enter.zoom-right-enter-active,
+.zoom-right-appear.zoom-right-appear-active {
+  -webkit-animation-name: antZoomRightIn;
+          animation-name: antZoomRightIn;
+  -webkit-animation-play-state: running;
+          animation-play-state: running;
+}
+.zoom-right-leave.zoom-right-leave-active {
+  -webkit-animation-name: antZoomRightOut;
+          animation-name: antZoomRightOut;
+  -webkit-animation-play-state: running;
+          animation-play-state: running;
+  pointer-events: none;
+}
+.zoom-right-enter,
+.zoom-right-appear {
+  -webkit-transform: scale(0);
+      -ms-transform: scale(0);
+          transform: scale(0);
+  opacity: 0;
+  -webkit-animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
+          animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
+}
+.zoom-right-leave {
+  -webkit-animation-timing-function: cubic-bezier(0.78, 0.14, 0.15, 0.86);
+          animation-timing-function: cubic-bezier(0.78, 0.14, 0.15, 0.86);
+}
+
+
+@-webkit-keyframes antZoomIn {
+  0% {
+    -webkit-transform: scale(0.2);
+            transform: scale(0.2);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes antZoomIn {
+  0% {
+    -webkit-transform: scale(0.2);
+            transform: scale(0.2);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+}
+@-webkit-keyframes antZoomOut {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(0.2);
+            transform: scale(0.2);
+    opacity: 0;
+  }
+}
+@keyframes antZoomOut {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(0.2);
+            transform: scale(0.2);
+    opacity: 0;
+  }
+}

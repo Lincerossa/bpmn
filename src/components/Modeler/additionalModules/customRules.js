@@ -19,8 +19,17 @@ CustomRules.prototype.init = function() {
 
 
   this.addRule('shape.create',HIGH_PRIORITY, function(context) {
+    const { source, target, hints = {},   } = context
+    const { targetAttach } = hints
 
-    if(isEventStartAndAlreadyOneIsPlaced(context)){
+
+
+    console.log(context)
+    if(isEventStartAndAlreadyOneIsPlaced(context) 
+      || (context.shape.type !== 'bpmn:Participant' && context.target.type === 'bpmn:Collaboration')
+      || (context.shape.type === 'bpmn:Participant' && context.target.type === 'bpmn:Participant')
+      
+      ){
       return false
     }
     return true

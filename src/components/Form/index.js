@@ -105,8 +105,7 @@ export default ({
             )}
             <S.ButtonWrapper>
               <Button
-                color="green"
-                fullWidth
+                full
                 type="submit"
                 disabled={isSubmitting}
                 onClick={handleSubmit}
